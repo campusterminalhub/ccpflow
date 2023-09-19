@@ -17,14 +17,20 @@ jobs:
         run: |
           # Replace this with your script to generate the Crossplane claim YAML content
           cat <<EOF > crossplane_claim.yaml
-          apiVersion: claim.crossplane.io/v1alpha1
-          kind: MySQLInstanceClaim
+          apiVersion: s3.aws.upbound.io/v1beta1
+          kind: Bucket
           metadata:
-            name: example-mysql-claim
+            name: crossplane-argo-ccp-bucket1-testing
           spec:
-            writeConnectionSecretToRef:
-              namespace: my-namespace
-              name: my-connection-secret
+            forProvider:
+              region: us-east-1
+              tags:
+                owner: atal.mayank.bajpai
+                project: CCP
+                env: dev
+                aws: eks
+            providerConfigRef:
+              name: awsconfig
           EOF
       - name: Commit and push changes
         run: |
