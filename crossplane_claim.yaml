@@ -1,0 +1,8 @@
+apiVersion: claim.crossplane.io/v1alpha1
+kind: MySQLInstanceClaim
+metadata:
+  name: example-mysql-claim
+spec:
+  writeConnectionSecretToRef:
+    namespace: my-namespace
+    name: my-connection-secret
