@@ -1,0 +1,36 @@
+name: Generate Crossplane Claim YAML
+
+on:
+  push:
+    branches:
+      - main  # Replace with the branch you want to trigger this workflow on
+
+jobs:
+  generate_yaml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate Crossplane Claim YAML
+        run: |
+          # Replace this with your script to generate the Crossplane claim YAML content
+          cat <<EOF > crossplane_claim.yaml
+apiVersion: claim.crossplane.io/v1alpha1
+kind: MySQLInstanceClaim
+metadata:
+  name: example-mysql-claim
+spec:
+  writeConnectionSecretToRef:
+    namespace: my-namespace
+    name: my-connection-secret
+EOF
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "campusterminalhub"
+          git config user.email "jjagadeeshgouda1996@gmail.com"
+          git add crossplane_claim.yaml
+          git commit -m "Generate Crossplane Claim YAML"
+          git push
