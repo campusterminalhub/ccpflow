@@ -25,12 +25,11 @@ jobs:
             forProvider:
               region: us-east-1
               tags:
-                owner: atal.mayank.bajpai
                 project: CCP
                 env: dev
                 aws: eks
             providerConfigRef:
-              name: awsconfig
+              name: newawsconfig
           EOF
       - name: Commit and push changes
         run: |
