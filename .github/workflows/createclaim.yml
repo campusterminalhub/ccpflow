@@ -17,16 +17,15 @@ jobs:
         run: |
           # Replace this with your script to generate the Crossplane claim YAML content
           cat <<EOF > crossplane_claim.yaml
-apiVersion: claim.crossplane.io/v1alpha1
-kind: MySQLInstanceClaim
-metadata:
-  name: example-mysql-claim
-spec:
-  writeConnectionSecretToRef:
-    namespace: my-namespace
-    name: my-connection-secret
-EOF
-
+          apiVersion: claim.crossplane.io/v1alpha1
+          kind: MySQLInstanceClaim
+          metadata:
+            name: example-mysql-claim
+          spec:
+            writeConnectionSecretToRef:
+              namespace: my-namespace
+              name: my-connection-secret
+          EOF
       - name: Commit and push changes
         run: |
           git config user.name "campusterminalhub"
